@@ -22,11 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <CartProvider>
           {children}
-          <Toaster />
+          <Toaster position="top-right" />
         </CartProvider>
       </body>
     </html>

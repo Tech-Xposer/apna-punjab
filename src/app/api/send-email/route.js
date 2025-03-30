@@ -38,14 +38,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Function to send email
-const sendEmail = async (
-  name,
-  orders,
-  phone,
-  email,
-  address,
-  zipcode
-) => {
+const sendEmail = async (name, orders, phone, email, address, zipcode) => {
   console.log("Sending email to:", email); // Log the recipient's email
   try {
     const mail = await transporter.sendMail({
@@ -75,13 +68,18 @@ const sendEmail = async (
                   .join("")}</ul>`
               : ""
           }
-          <strong>Total: ${(order.price * (order.quantity || 1)).toFixed(
+          <strong>Sub Total: ${(order.price * (order.quantity || 1)).toFixed(
             2
           )} €</strong>
         </li>`
     )
     .join("")}
 </ul>
+  <strong>Total: ${orders.reduce(
+    (total, order) => total + order.price * (order.quantity || 1),
+    0
+  )} €</strong>
+
 ${address ? `<p><strong>Address:</strong> ${address}</p>` : ""}
 ${zipcode ? `<p><strong>Zip:</strong> ${zipcode}</p>` : ""}
 

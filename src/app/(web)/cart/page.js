@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import { useCart } from "../CartLayout";
 import { toast } from "sonner";
 
-
 const Checkout = () => {
   const router = useRouter();
   const { cart } = useCart();
@@ -96,7 +95,7 @@ const Checkout = () => {
     .toFixed(2);
 
   return (
-    <div className="flex flex-col items-center justify-center py-[50px] text-white  w-full bg-black/80">
+    <div className="flex flex-col items-center justify-center py-[50px] text-white  w-full bg-black/80 ">
       <h2 className="text-5xl mb-4 text-[#F4BE39] font-londrina">Checkout</h2>
 
       {cart.length ? (

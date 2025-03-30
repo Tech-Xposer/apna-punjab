@@ -37,7 +37,7 @@ export async function POST(req) {
 
     // Validate price options structure
     for (const option of priceOptions) {
-      if (!option.price ) {
+      if (!option.price) {
         return NextResponse.json(
           {
             message: "Each price option must have quantity, price, and pricev2",
@@ -72,6 +72,33 @@ export async function GET(req) {
   } catch (error) {
     return NextResponse.json(
       { message: "Error fetching categories", error: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(req) {
+  try {
+    await dbConnect();
+    const body = await req.json();
+    const { categoryId, dishId, isActive } = body;
+    const categories = await Category.findById(categoryId).populate("dishes");
+
+    console.log(categories.dishes, "categories");
+    const dish = categories.dishes.find((dish) => {
+      return dish._id.toString() === dishId;
+    });
+    if (!dish) {
+      return NextResponse.json({ message: "Dish not found" }, { status: 404 });
+    }
+
+    dish.isActive = isActive;
+
+    await categories.save();
+    return NextResponse.json(categories, { status: 200 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error updating dishes", error: error.message },
       { status: 500 }
     );
   }
