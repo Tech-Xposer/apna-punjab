@@ -237,7 +237,7 @@ const Dish = ({ dish }) => {
           className="mt-3 w-full bg-orange-400 text-white hover:bg-orange-300 text-xl"
           disabled={!dish.isActive}
         >
-          Add to Cart
+          {dish.isActive ? "Add to Cart" : "Unavailable"}
         </Button>
       </div>
     </div>
