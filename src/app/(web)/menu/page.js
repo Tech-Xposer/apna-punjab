@@ -218,7 +218,7 @@ const Dish = ({ dish }) => {
         <div className="flex items-center gap-3">
           <Button
             onClick={decrement}
-            disabled={quantity === 0}
+            disabled={!dish.isActive || quantity === 0}
             className="bg-orange-400 text-white hover:bg-orange-300"
           >
             -
@@ -227,6 +227,7 @@ const Dish = ({ dish }) => {
           <Button
             onClick={increment}
             className="bg-orange-400 text-white hover:bg-orange-300"
+            disabled={!dish.isActive}
           >
             +
           </Button>
