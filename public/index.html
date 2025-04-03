@@ -1195,10 +1195,11 @@
                               dishCard.classList.add("dish-card");
               
                               dishCard.innerHTML = `
+                              <a href="/menu">
                                   <img src="${dish.image}" alt="${dish.name}">
                                   <h3>${dish.name}</h3>
-                                  <p>${dish.description}</p>
-                                  <p><strong>Price: ₹${dish.price}</strong></p>
+</a>
+                                  
                               `;
               
                               dishesList.appendChild(dishCard);
@@ -1534,14 +1535,14 @@
 							<div class="elementor-widget-wrap elementor-element-populated">
 							  <div class="elementor-element elementor-element-4567e935 elementor-widget__width-auto elementor-widget elementor-widget-pt_button" data-id="4567e935" data-element_type="widget" data-widget_type="pt_button.default">
 								<div class="elementor-widget-container">
-								  <a href="https://linktr.ee/apnapunjab?utm_source=qr_code" class="elementor-button-link button" role="button">
+								  <a href="/menu" class="elementor-button-link button" role="button">
 									<span class="pt-btn-text">Afficher le menu complet</span>
 								  </a>
 								</div>
 							  </div>
 							  <div class="elementor-element elementor-element-2e93dd1a elementor-widget__width-auto elementor-widget elementor-widget-pt_button" data-id="2e93dd1a" data-element_type="widget" data-widget_type="pt_button.default">
 								<div class="elementor-widget-container">
-								  <a href="https://linktr.ee/apnapunjab?utm_source=qr_code" target="_blank" class="elementor-button-link button pt-btn-outline pt-btn-color-primary" role="button">
+								  <a href="/menu" target="_blank" class="elementor-button-link button pt-btn-outline pt-btn-color-primary" role="button">
 									<span class="pt-btn-text">Commandez en ligne</span>
 								  </a>
 								</div>
