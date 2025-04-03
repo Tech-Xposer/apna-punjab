@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const priceOptionSchema = new mongoose.Schema({
   type: { type: String }, // e.g., "Seul" or "En Menu"
   quantity: { type: Number }, // Number of pieces per option
+  name: { type: String },
   price: { type: Number, required: true },
   pricev2: { type: Number }, // Price for another branch
 });

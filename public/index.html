@@ -1169,7 +1169,7 @@
                     </section>
 
                     <section id="broadcast" class="broadcast-section">
-                      <h2>Plats spéciaux d'aujourd'hui</h2>
+                      <h2>PIZZAS VEGETARIENNES</h2>
                       <div class="dishes-container" id="dishes-list">
                           <!-- Dishes will be dynamically added here -->
                       </div>
@@ -1177,10 +1177,13 @@
               
                   <script>
                       async function fetchAvailableDishes() {
-                          fetch("https://my-backend-vf80.onrender.com/api/dishes")
+                          fetch("/api/categories")
                               .then((res) => res.json())
-                              .then((dishes) => {
-                                  const availableDishes = dishes.filter((dish) => dish.available);
+                              .then((categories) => {
+                                console.log(categories, "categories");
+                                const dishes = categories.find((category) => category.name === "PIZZAS VEGETARIENNES").dishes;
+                               
+                                  const availableDishes = dishes.filter((dish) => dish.isActive);
                                   displayDishes(availableDishes);
                               })
                               .catch((error) => console.error("Error fetching dishes:", error));
@@ -1196,8 +1199,11 @@
               
                               dishCard.innerHTML = `
                               <a href="/menu">
-                                  <img src="${dish.image}" alt="${dish.name}">
+                                  <img src="${dish.img}" alt="${dish.name}">
                                   <h3>${dish.name}</h3>
+                                  <p>${dish.description}</p>
+                                  
+                                   <p><strong>Price: ₹${dish.priceOptions[0].price}</strong></p>
 </a>
                                   
                               `;
