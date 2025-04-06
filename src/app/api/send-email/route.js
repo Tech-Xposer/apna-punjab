@@ -28,9 +28,9 @@ export async function POST(request) {
 
 // Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  port: 587,
-  secure: false, // Use secure: false for STARTTLS, true if you're using SSL
+  host: process.env.NEXT_PUBLIC_NODEMAILER_HOST,
+  port: 465, // or 587
+  secure: true,
   auth: {
     user: process.env.NEXT_PUBLIC_NODEMAILER_USERNAME,
     pass: process.env.NEXT_PUBLIC_NODEMAILER_PASSWORD,
@@ -42,7 +42,7 @@ const sendEmail = async (name, orders, phone, email, address, zipcode) => {
   console.log("Sending email to:", email); // Log the recipient's email
   try {
     const mail = await transporter.sendMail({
-      from: `"Apna Punjab" <${process.env.NEXT_PUBLIC_NODEMAILER_USERNAME}>`, // Use the actual email as the sender
+      from: `"Order - Apna Punjab" <${process.env.NEXT_PUBLIC_NODEMAILER_USERNAME}>`, // Use the actual email as the sender
       to: `${process.env.NEXT_PUBLIC_NODEMAILER_RECIPIENT}, ${email},${process.env.NEXT_PUBLIC_NODEMAILER_ADMIN}`,
       subject: `Order from ${name}`,
       html: `
